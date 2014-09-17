@@ -2,7 +2,7 @@
 # Count through 1 to 100. For every number that is a multiple of 3
 # print "Fizz". For every number that is a multiple of 5 print "Buzz".
 # For every number that is a multiple of both print "FizzBuzz".
-# By Chuck Park
+# By Chuck Park 9-17-14
 
 # Begin looping through 1 to 100
  (1..100).each do |count|
