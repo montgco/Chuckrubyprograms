@@ -1,25 +1,22 @@
-# 3wk_fizz_buzz_inspiration.rb
-# Count through 1 to 100. For every number that is a multiple of 3
-# print "Fizz". For every number that is a multiple of 5 print "Buzz".
-# For every number that is a multiple of both print "FizzBuzz".
-# By Chuck Park 9-17-14
-
-# Begin looping through 1 to 100
- (1..100).each do |count|
-
-  case
-
-  when (count % 3  == 0) & (count % 5 == 0) # if multiple of 3 and five print "FizzBuzz"
-    puts 'FizzBuzz'
-
-  when count % 3  == 0 # if multiple of 3 print "Fizz"
-    puts 'Fizz'
-
-  when count % 5 == 0 # if multiple of 5 print "Buzz"
-    puts "Buzz"
-
-  else
-      puts count # if not a multiple of 3 or 5 print out number
+class Fixnum
+  def is_evenly_divisible_by?(number)
+     (self % number).zero?
   end
+end
 
+def fizz_buzz(number)
+  result = ''
+  if number.is_evenly_divisible_by?(3)
+    result << 'Fizz'
+  end
+  if number.is_evenly_divisible_by?(5)
+    result << "Buzz"
+  end
+  result.empty? ? number : result
+end
+
+if __FILE__ == $0
+  (1..100).each do |number|
+    puts fizz_buzz(number)
+  end
 end

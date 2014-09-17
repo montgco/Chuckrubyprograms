@@ -1,0 +1,22 @@
+doctest: Setup this test environment
+>> require './3_week/3wk_fizz_buzz_inspiration.rb'
+I don't require to have an expected value.  If this file does not load, it
+will fail, trust me!
+
+doctest: 12.is_evenly_divisible_by?(3) will return true
+>> 12.is_evenly_divisible_by?(3)
+=> true
+doctest: 12.is_evenly_divisible_by?(5) will return false
+>> 12.is_evenly_divisible_by?(5)
+=> false
+
+doctest: fizz_buzz method, given a 3 will return 'Fizz'
+>> fizz_buzz 3
+=> 'Fizz'
+doctest: fizz_buzz 5 will return 'Buzz'
+>> fizz_buzz(5)
+=> 'Buzz'
+doctest: fizz_buzz 7 will return the number
+>> fizz_buzz(7)
+=> 7
+
