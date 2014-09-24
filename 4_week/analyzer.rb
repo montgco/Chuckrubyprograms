@@ -16,55 +16,53 @@ filename = ARGV[0] ? ARGV[0] : "text.txt"
 
 # Open and read lines into a string
 def text_file_read(filename)
-  textfile = File.open(filename, 'r')
-  alllinesfromfile = textfile.read
+  text_file = File.open(filename, 'r')
+  all_lines_from_file = text_file.read
+  text_file.close
+  return all_lines_from_file
 end
 # Count the number of lines in the text file
-def count_lines(alllinesfromfile)
-  line_count = alllinesfromfile.lines.count
+def count_lines(all_lines_from_file)
+  all_lines_from_file.lines.count
 end
 # Count number of characters with spaces
-def count_characters(alllinesfromfile)
-  char_count = alllinesfromfile.gsub(/\n+/,"")
-  char_count.length
- end
+def count_characters(all_lines_from_file)
+  all_lines_from_file.gsub(/\n+/,"").length
+end
 # Count number of characters without spaces
-def count_characters_no_spaces(alllinesfromfile)
-  char_count  = alllinesfromfile.gsub(/\s+/, "")
-  char_count.length
+def count_characters_no_spaces(all_lines_from_file)
+  all_lines_from_file.gsub(/\s+/, "").length
 end
 # Count total number of words in string
-def word_count(alllinesfromfile)
-  wordcount = alllinesfromfile.split.length
+def word_count(all_lines_from_file)
+  all_lines_from_file.split.length
 end
 # Count number of sentences in string
-def sentence_count(alllinesfromfile)
-  sentencecount = alllinesfromfile.split(/\.|\?|\!/).length
-  # sentencecount.count
+def sentence_count(all_lines_from_file)
+  all_lines_from_file.split(/\.|\?|\!/).length
 end
 # Count number of paragraphs in string
-def paragraph_count(alllinesfromfile)
-  paragraphcount = alllinesfromfile.split(/\n\n/).length
+def paragraph_count(all_lines_from_file)
+  all_lines_from_file.split(/\n\n/).length
 end
 
 # Load text file into a string
-alllinesfromfile = text_file_read(filename)
+all_lines_from_file = text_file_read(filename)
 
 # Execute methods to analyze data and store in a hash
-analyzeddata = Hash.new
-analyzeddata.store("Line Count", count_lines(alllinesfromfile))
-analyzeddata.store("Character Count", count_characters(alllinesfromfile))
-analyzeddata.store("Character Count No Spaces", count_characters_no_spaces(alllinesfromfile))
-analyzeddata.store("Word Count", word_count(alllinesfromfile))
-analyzeddata.store("Sentence Count", sentence_count(alllinesfromfile))
-analyzeddata.store("Paragraph Count", paragraph_count(alllinesfromfile))
-analyzeddata.store("Avg. Word per Sentence", (analyzeddata.fetch("Word Count") / analyzeddata.fetch("Sentence Count")))
-analyzeddata.store("Avg. Sentences per paragraph", (analyzeddata.fetch("Sentence Count") / analyzeddata.fetch("Paragraph Count")))
-
+analyzed_data = Hash.new
+analyzed_data.store("Line Count", count_lines(all_lines_from_file))
+analyzed_data.store("Character Count", count_characters(all_lines_from_file))
+analyzed_data.store("Character Count No Spaces", count_characters_no_spaces(all_lines_from_file))
+analyzed_data.store("Word Count", word_count(all_lines_from_file))
+analyzed_data.store("Sentence Count", sentence_count(all_lines_from_file))
+analyzed_data.store("Paragraph Count", paragraph_count(all_lines_from_file))
+analyzed_data.store("Avg. Word per Sentence", format("%.2f", (analyzed_data.fetch("Word Count").to_f / analyzed_data.fetch("Sentence Count"))))
+analyzed_data.store("Avg. Sentences per paragraph", format("%.2f", (analyzed_data.fetch("Sentence Count").to_f / analyzed_data.fetch("Paragraph Count"))))
 #  Print analyzed results
 puts
 puts "***File Analyzed Data***"
-analyzeddata.each do |a, b|
+analyzed_data.each do |a, b|
   puts " #{a} = #{b}"
 end
 
